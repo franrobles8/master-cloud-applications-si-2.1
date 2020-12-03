@@ -1,9 +1,5 @@
 package com.mastercloudapps.practica1.model;
 
-import java.util.Collection;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-
 public class Book {
     private String id;
     private String title;
@@ -11,7 +7,6 @@ public class Book {
     private String author;
     private String publishingHouse;
     private int publicationYear;
-    private ConcurrentMap<String, Comment> comments;
 
     public Book(String title, String summary, String author, String publishingHouse, int publicationYear) {
         this.title = title;
@@ -19,7 +14,6 @@ public class Book {
         this.author = author;
         this.publishingHouse = publishingHouse;
         this.publicationYear = publicationYear;
-        this.comments = new ConcurrentHashMap<>();
     }
 
     public String getId() {
@@ -46,15 +40,7 @@ public class Book {
         return this.publicationYear;
     }
 
-    public Collection<Comment> getComments() {
-        return this.comments.values();
-    }
-
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void addComment(Comment comment) {
-        this.comments.put(comment.getId(), comment);
     }
 }

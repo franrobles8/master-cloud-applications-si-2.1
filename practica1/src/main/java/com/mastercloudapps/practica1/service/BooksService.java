@@ -3,7 +3,6 @@ package com.mastercloudapps.practica1.service;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import com.mastercloudapps.practica1.model.Book;
-import com.mastercloudapps.practica1.model.Comment;
 
 import org.springframework.stereotype.Service;
 
@@ -31,12 +30,5 @@ public class BooksService {
 
     public Book findBookById(String id) {
         return this.books.get(id);
-    }
-
-    public void addComment(String id, Comment comment) {
-        Book book = this.books.get(id);
-        String commentId = UUID.randomUUID().toString();
-        comment.setId(commentId);
-        book.addComment(comment);
     }
 }

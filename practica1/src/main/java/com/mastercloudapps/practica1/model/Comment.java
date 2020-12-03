@@ -6,10 +6,10 @@ public class Comment {
     private String comment;
     private Score score;
 
-    public Comment(String name, String comment, Score score) {
+    public Comment(String name, String comment, double score) {
         this.name = name;
         this.comment = comment;
-        this.score = score;
+        this.score = new Score(score);
     }
 
     public String getId() {
