@@ -1,0 +1,14 @@
+{{>header}}
+    <div id="books">
+        {{#books}}
+        <div>
+            <a href="/books/{{id}}">{{title}}</a>
+        </div>
+        {{/books}}
+        {{^books}}
+        <div>There aren't any books in our system</div>
+        {{/books}}
+        <br>
+        <a href="/add_book.html">Create new book</a>
+    </div>
+{{>footer}}
