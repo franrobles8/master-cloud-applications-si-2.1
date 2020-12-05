@@ -1,22 +1,26 @@
 {{>header}}
+<a href="/">Go back</a>
 <div id="book">
+    <h3>Book information</h3>
     {{#book}}
-    <div>{{book.title}}</div>
-    <div>{{book.summary}}</div>
-    <div>{{book.author}}</div>
-    <div>{{book.publishingHouse}}</div>
-    <div>{{book.publicationYear}}</div>
-    {{/book}}
-    {{^book}}
-    <div>This book doesn't exist</div>
-    {{/book}}
+    <div><strong>Title:</strong> {{book.title}}</div>
+    <div><strong>Summary:</strong> {{book.summary}}</div>
+    <div><strong>Author:</strong> {{book.author}}</div>
+    <div><strong>Publishing house:</strong> {{book.publishingHouse}}</div>
+    <div><strong>Pub. Year:</strong> {{book.publicationYear}}</div>
     <br>
     <div id="comments">
         <h3>Comments</h3>
         {{#comments}}
-        <div>{{name}}</div>
-        <div>{{comment}}</div>
-        <div>{{score}}</div>
+        <div id="comment">
+            <div><strong>Name:</strong> {{name}}</div>
+            <div><strong>Comment:</strong> {{comment}}</div>
+            <div><strong>Score:</strong> {{score}} </div>
+            <form action="/books/{{book.id}}/comments/{{id}}/?remove=true", method="POST">
+                <input type="submit" value="Remove">
+            </form>
+        </div>
+        <br>
         {{/comments}}
         {{^comments}}
         <div>There aren't any comments for this book</div>
@@ -24,10 +28,21 @@
     </div>
     <h3>Create comment</h3>
     <form action="/books/{{book.id}}/comments" method="POST">
+        <strong>Name:</strong>
+        {{#commentName}}
+        <input type="text" name="name" placeholder="Peter" value="{{commentName}}" disabled><br>
+        {{/commentName}}
+        {{^commentName}}
         <input type="text" name="name" placeholder="Peter"><br>
-        <input type="text" name="comment" placeholder="I really liked this book"><br>
-        <input type="text" name="score" placeholder="4.7"><br>
+        {{/commentName}}
+        <strong>Comment:</strong> <input type="text" name="comment" placeholder="I really liked this book"><br>
+        <strong>Score(0.0-5.0):</strong> <input type="number" min="0" max="5" step="0.1" name="score" placeholder="4.7"><br>
         <input type="submit" value="Add comment">
     </form>
+    {{/book}}
+    {{^book}}
+    <div>This book doesn't exist</div>
+    {{/book}}
+    <br>
 </div>
 {{>footer}}
