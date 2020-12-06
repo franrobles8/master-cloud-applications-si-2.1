@@ -6,11 +6,11 @@
     <body>
         <h3>Add a new book</h3>
         <form action="/books" method="POST">
-            <input type="text" name="title" placeholder="Lord of the rings"><br>
-            <textarea name="summary" placeholder="Example summary"></textarea><br>
-            <input type="text" name="author" placeholder="J.R.R. Tolkien"><br>
-            <input type="text" name="publishingHouse" placeholder="My publishing house"><br>
-            <input type="text" name="publicationYear" placeholder="2005"><br>
+            <input type="text" name="title" placeholder="Lord of the rings" required><br>
+            <textarea name="summary" placeholder="Example summary" required></textarea><br>
+            <input type="text" name="author" placeholder="J.R.R. Tolkien" required><br>
+            <input type="text" name="publishingHouse" placeholder="My publishing house" required><br>
+            <input type="number" name="publicationYear" min="0" placeholder="2005" required><br>
             <input type="submit" value="Save">
         </form>
     </body>

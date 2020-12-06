@@ -37,7 +37,7 @@ public class BooksController {
     }
 
     @GetMapping("/books/{id}")
-    public String book(HttpSession session, Model model, @PathVariable String id) {
+    public String getBook(Model model, @PathVariable String id) {
         model.addAttribute("book", this.booksService.findBookById(id));
         model.addAttribute("comments", this.booksService.findAllComments(id));
         model.addAttribute("commentName", this.user.getName());
@@ -45,17 +45,17 @@ public class BooksController {
     }
 
     @PostMapping("/books")
-    public String books(Model model, Book book) {
+    public String addBook(Model model, Book book) {
         this.booksService.add(book);
         return "redirect:/";
     }
 
     @PostMapping("/books/{id}/comments")
     public String addComment(Model model, @PathVariable String id, Comment comment) {
+        this.booksService.addComment(id, comment);
         this.user.setName(comment.getName());
         if(!ScoreRange.inRange(comment.getScore().getValue()))
             log.warn("Score is out of the valid range [0-5]");
-        this.booksService.addComment(id, comment);
         return "redirect:/books/" + id;
     }
 

@@ -3,12 +3,12 @@ package com.mastercloudapps.practica1.model;
 public class Comment {
     private String id;
     private String name;
-    private String comment;
+    private String value;
     private Score score;
 
-    public Comment(String name, String comment, double score) {
+    public Comment(String name, String value, double score) throws ScoreOutOfRangeException {
         this.name = name;
-        this.comment = comment;
+        this.value = value;
         this.score = new Score(score);
     }
 
@@ -20,8 +20,8 @@ public class Comment {
         return this.name;
     }
 
-    public String getComment() {
-        return this.comment;
+    public String getValue() {
+        return this.value;
     }
 
     public Score getScore() {

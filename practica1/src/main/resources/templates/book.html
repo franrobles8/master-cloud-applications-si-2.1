@@ -14,7 +14,7 @@
         {{#comments}}
         <div id="comment">
             <div><strong>Name:</strong> {{name}}</div>
-            <div><strong>Comment:</strong> {{comment}}</div>
+            <div><strong>Comment:</strong> {{value}}</div>
             <div><strong>Score:</strong> {{score}} </div>
             <form action="/books/{{book.id}}/comments/{{id}}/?remove=true", method="POST">
                 <input type="submit" value="Remove">
@@ -30,13 +30,13 @@
     <form action="/books/{{book.id}}/comments" method="POST">
         <strong>Name:</strong>
         {{#commentName}}
-        <input type="text" name="name" placeholder="Peter" value="{{commentName}}" disabled><br>
+        <input type="text" name="name" placeholder="Peter" value="{{commentName}}" readonly required><br>
         {{/commentName}}
         {{^commentName}}
-        <input type="text" name="name" placeholder="Peter"><br>
+        <input type="text" name="name" placeholder="Peter" required><br>
         {{/commentName}}
-        <strong>Comment:</strong> <input type="text" name="comment" placeholder="I really liked this book"><br>
-        <strong>Score(0.0-5.0):</strong> <input type="number" min="0" max="5" step="0.1" name="score" placeholder="4.7"><br>
+        <strong>Comment:</strong> <input type="text" name="value" placeholder="I really liked this book" required><br>
+        <strong>Score(0.0-5.0):</strong> <input type="number" min="0" max="5" step="0.1" name="score" placeholder="4.7" required><br>
         <input type="submit" value="Add comment">
     </form>
     {{/book}}
