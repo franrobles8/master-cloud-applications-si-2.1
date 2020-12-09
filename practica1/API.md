@@ -5,14 +5,14 @@
 Frontal expuesto en [http://localhost:8080/](http://localhost:8080/):
 
 * La página será capaz de manejar varios libros
-* En la página principal aparecerán los tituos de los libros.
+* En la página principal aparecerán los titulos de los libros.
 * Cada titulo tendrá un link para mostrar más información de este.
 * En la página principal habrá un link para crear un nuevo libro.
 * Cada comentario se podrá borrar.
 
 ### REST API
 
-La api contendrá los siguietntes endpoints:
+La api contendrá los siguientes endpoints:
 
 | DESCRIPCIÓN                                                                                      | RUTA                                                          |
 |--------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
