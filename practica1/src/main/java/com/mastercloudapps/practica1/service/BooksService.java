@@ -4,9 +4,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import com.mastercloudapps.practica1.model.Book;
 import com.mastercloudapps.practica1.model.Comment;
+import com.mastercloudapps.practica1.model.Error;
+
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,18 +22,19 @@ public class BooksService {
                 2002));
     }
 
-    public void add(Book book) {
+    public String add(Book book) {
         String id = UUID.randomUUID().toString();
         book.setId(id);
         this.books.put(id, book);
+        return id;
     }
 
     public Collection<Book> findAll() {
         return this.books.values();
     }
 
-    public Book findBookById(String id) {
-        return this.books.get(id);
+    public Optional<Book> findById(String id) {
+        return Optional.ofNullable(this.books.get(id));    
     }
 
     public Collection<Comment> findAllComments(String id) {
@@ -41,19 +45,31 @@ public class BooksService {
         return new ArrayList<>();
     }
 
-    public void addComment(String id, Comment comment) {
-        Book book = this.books.get(id);
-        if (book != null) {
-            String commentId = UUID.randomUUID().toString();
-            comment.setId(commentId);
-            book.addComment(comment);
+    public boolean deleteBook(String id){
+        if (this.books.containsKey(id)){
+            this.books.remove(id);
+            return true;
         }
+        return false;
     }
 
-    public void removeComment(String id, String commentId) {
-        Book book = this.books.get(id);
-        if(book != null) {
-            book.removeComment(commentId);
+    public String addComment(String id, Comment comment) {
+        if(this.books.containsKey(id)){
+            String commentId = UUID.randomUUID().toString();
+            comment.setId(commentId);
+            this.books.get(id).addComment(comment);
+            return commentId;
         }
+        return Error.BOOK_NOT_FOUND.toString();
     }
+
+    public String deleteComment(String id, String commentId) {
+        if(this.books.containsKey(id)){
+            this.books.get(id).deleteComment(commentId);
+            return commentId;
+        }
+        return Error.BOOK_NOT_FOUND.toString();
+    }
+
+    
 }

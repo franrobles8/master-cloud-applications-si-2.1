@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Practica_books",
+		"_postman_id": "ee13d997-718d-a2a0-61f8-9c1a632639ea",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add comment",
+			"request": {
+				"url": "http://localhost:8080/api/books/8cb72239-ef9a-4366-b17e-2d5bd64854b4/comments",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"New Comment\",\r\n  \"user\": \"New User\",\r\n  \"score\": 0.2\r\n}"
+				},
+				"description": "Add new Comment to an existing book"
+			},
+			"response": []
+		},
+		{
+			"name": "Add book",
+			"request": {
+				"url": "http://localhost:8080/api/books/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"string\",\r\n  \"title\": \"string\",\r\n  \"summary\": \"string\",\r\n  \"author\": \"string\",\r\n  \"publishingHouse\": \"string\",\r\n  \"publicationYear\": 0\r\n}"
+				},
+				"description": "Add a book"
+			},
+			"response": []
+		},
+		{
+			"name": "Get summary books",
+			"request": {
+				"url": "http://localhost:8080/api/books/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"New Comment\",\r\n  \"user\": \"New User\",\r\n  \"score\": 0.2\r\n}"
+				},
+				"description": "Add new Comment to an existing book"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all information from a book",
+			"request": {
+				"url": "http://localhost:8080/api/books/3ceff28c-669f-456f-8a7d-24ea7a8e0778",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"text\": \"New Comment\",\r\n  \"user\": \"New User\",\r\n  \"score\": 0.2\r\n}"
+				},
+				"description": "Get all info including comments from a book"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a comment for a specific book",
+			"request": {
+				"url": "http://localhost:8080/api/books/3ceff28c-669f-456f-8a7d-24ea7a8e0778/comments/6124ac8d-fe53-417d-8cd2-ed34dfe9b5bd",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

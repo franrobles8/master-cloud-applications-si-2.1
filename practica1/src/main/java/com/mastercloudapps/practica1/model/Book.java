@@ -58,7 +58,8 @@ public class Book {
         this.comments.put(comment.getId(), comment);
     }
 
-    public void removeComment(String commentId) {
-        this.comments.remove(commentId);
+    public void deleteComment(String commentId) {
+        if (this.comments.containsKey(commentId))
+            this.comments.remove(commentId);
     }
 }

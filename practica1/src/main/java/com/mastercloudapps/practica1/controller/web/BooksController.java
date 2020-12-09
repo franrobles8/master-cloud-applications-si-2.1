@@ -1,4 +1,4 @@
-package com.mastercloudapps.practica1.controller;
+package com.mastercloudapps.practica1.controller.web;
 
 import javax.servlet.http.HttpSession;
 import com.mastercloudapps.practica1.model.Book;
@@ -38,7 +38,7 @@ public class BooksController {
 
     @GetMapping("/books/{id}")
     public String getBook(Model model, @PathVariable String id) {
-        model.addAttribute("book", this.booksService.findBookById(id));
+        model.addAttribute("book", this.booksService.findById(id).get());
         model.addAttribute("comments", this.booksService.findAllComments(id));
         model.addAttribute("commentName", this.user.getName());
         return "book";
@@ -60,9 +60,9 @@ public class BooksController {
     }
 
     @PostMapping("/books/{id}/comments/{commentId}/")
-    public String removeComment(Model model, @PathVariable String id, @PathVariable String commentId, @RequestParam boolean remove) {
+    public String deleteComment(Model model, @PathVariable String id, @PathVariable String commentId, @RequestParam boolean remove) {
         if(remove) {
-            this.booksService.removeComment(id, commentId);
+            this.booksService.deleteComment(id, commentId);
         }
         return "redirect:/books/" + id;
     }
